@@ -58,14 +58,14 @@ func (w *Writer) Length() int64 {
 }
 
 // Line returns the line number for the given offset.
-// See Positon for more information.
+// See Position for more information.
 func (w *Writer) Line(offset int64) (int64, error) {
 	line, _, err := w.Position(offset)
 	return line, err
 }
 
 // Column returns the column number for the given offset.
-// See Positon for more information.
+// See Position for more information.
 func (w *Writer) Column(offset int64) (int64, error) {
 	_, column, err := w.Position(offset)
 	return column, err
