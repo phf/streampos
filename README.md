@@ -1,6 +1,6 @@
 # streampos: An io.Writer that tracks lines and columns
 
-More commonly known as "*How I learned to love composition even more!*"
+More commonly known as *"How I learned to love composition even more!"*
 
 [![GoDoc](https://godoc.org/github.com/phf/streampos?status.svg)](https://godoc.org/github.com/phf/streampos)
 [![Go Report Card](https://goreportcard.com/badge/github.com/phf/streampos)](https://goreportcard.com/report/github.com/phf/streampos)
