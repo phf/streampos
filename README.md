@@ -1,4 +1,4 @@
-# streampos: An io.Writer that tracks lines and columns
+# streampos: A writer that tracks lines and columns
 
 More commonly known as *"How I learned to love composition even more!"*
 
@@ -7,7 +7,7 @@ More commonly known as *"How I learned to love composition even more!"*
 
 ## Summary
 
-Package `streampos` provides an `io.Writer` that tracks (line, column)
+Package `streampos` exports an `io.Writer` that tracks (line, column)
 positions in streams, suitable for error messages. It looks for newline
 characters and builds a mapping from byte offset ranges (which start at
 0) to line numbers (which start at 1). The `Position` method returns the
@@ -23,7 +23,7 @@ You should be able to just say this:
 
 	go get -u github.com/phf/streampos
 
-Then you can import and use the package like this:
+Then you can import and use the package as follows:
 
 ```golang
 package main
@@ -54,7 +54,7 @@ Column numbers are currently computed in terms of *bytes* just like in the
 Go compiler. The advantage is a clear definition of what "column" actually
 means. The drawback is that users may not agree when it comes to TAB
 characters or multi-byte runes. However, given that GCC's bug-tracker is
-*full* of column-related issues, maybe it's preferable to keep it simple?
+*full* of column-related issues, maybe it's better to keep it simple?
 
 Currently I use a *slice* of byte offset ranges and a *linear* search.
 For large streams, that's obviously slow. Binary search would help, as

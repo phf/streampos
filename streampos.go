@@ -2,7 +2,7 @@
 // Use of this source code is governed by the MIT license,
 // see the LICENSE.md file.
 
-// Package streampos exports a Writer that tracks positions (line, column)
+// Package streampos exports a Writer that tracks (line, column) positions
 // suitable for error messages.
 package streampos
 
@@ -27,7 +27,7 @@ type Writer struct {
 }
 
 // Write accepts data to track positions in. It does not perform any actual
-// I/O, so writes are never short.
+// I/O, so writes are never short (and never fail).
 func (w *Writer) Write(b []byte) (n int, err error) {
 	s := string(b)
 	// offset and line for *this* Write call
@@ -94,5 +94,6 @@ func (w *Writer) Position(offset int64) (line, column int64, err error) {
 	if p.to < offset && offset < w.total {
 		return p.line + 1, offset - p.to, nil
 	}
+	// if we ever get here, something is wrong with the logic above
 	return -1, -1, fmt.Errorf("streampos: internal error")
 }
