@@ -1,6 +1,6 @@
-# streampos: A writer that tracks lines and columns
+# streampos: a writer that tracks lines and columns
 
-More commonly known as *"How I learned to love composition even more!"*
+Or *"How I learned to love composition even more!"*
 
 [![GoDoc](https://godoc.org/github.com/phf/streampos?status.svg)](https://godoc.org/github.com/phf/streampos)
 [![Go Report Card](https://goreportcard.com/badge/github.com/phf/streampos)](https://goreportcard.com/report/github.com/phf/streampos)
@@ -55,6 +55,14 @@ Go compiler. The advantage is a clear definition of what "column" actually
 means. The drawback is that users may not agree when it comes to TAB
 characters or multi-byte runes. However, given that GCC's bug-tracker is
 *full* of column-related issues, maybe it's better to keep it simple?
+
+Maybe we could at least make column numbers *somewhat* configurable. The
+`text/scanner` package for example uses character counts instead of byte
+counts, at least that's how I understand the documentation. Adding a small
+constructor function with an (optional) parameter to specify options could
+achieve that in a moderately straightforward way. I don't care very much
+one way or the other, I am happy with columns in terms of bytes.
+At least for now.
 
 Currently I use a *slice* of byte offset ranges and a *linear* search.
 For large streams, that's obviously slow. Binary search would help, as
