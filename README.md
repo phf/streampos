@@ -14,8 +14,10 @@ characters and builds a mapping from byte offset ranges (which start at
 line and column number that corresponds to a given offset in the stream.
 The offset has to be between 0 and whatever the `Length` method returns.
 
-If all of this strikes you as rather strange, you should probably read
-my blog post once I am done with it. (Watch this space for the link.)
+If all of this strikes you as rather strange, you may want to read my
+[blog post](http://nilisnotnull.blogspot.com/2016/04/tracking-positions-in-go-why.html)
+on the genesis of this package. (Also if I "shot myself in the foot" and
+there's a much better way of doing this, please comment there!)
 
 ## Usage
 
