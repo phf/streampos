@@ -61,14 +61,20 @@ var testcases = []testcase{
 func TestAll(t *testing.T) {
 	for _, tc := range testcases {
 		w := &Writer{}
+		total := int64(0)
 		for _, d := range tc.data {
+			if total != w.Length() {
+				t.Errorf("%v, want %v", w.Length(), total)
+			}
 			n, err := w.Write([]byte(d))
 			if n != len(d) || err != nil {
 				t.Errorf("(%v, %v), want (%v, %v)", n, err, len(d), nil)
 			}
+			total += int64(n)
 		}
 		for _, wa := range tc.wants {
-			line, column, _ := w.Position(wa.offset)
+			line, _ := w.Line(wa.offset)
+			column, _ := w.Column(wa.offset)
 			if line != wa.line || column != wa.column {
 				t.Errorf("(%v, %v), want (%v, %v)", line, column, wa.line, wa.column)
 			}
